@@ -136,4 +136,47 @@ python scripts/run_ablations.py
 * Runs the model with: (A) Single-layer projection head, (B) No Attention (GCNConv), and (C) Raw scalar distances (no Gaussian smearing).
 * Generates learning curves comparing training vs. validation MAE trajectories across the baseline and all three ablations, saving them to `data/processed/ablation_trajectories_plot.png`.
 
----\n\n## 📊 Quantitative Benchmark Results\nBelow is the test-set performance comparison reproducing the metrics in **Table I** of the manuscript:\n\n| Configuration / Experiment | Architectural Details | MAE (eV) | $R^2$ |\n| :--- | :--- | :---: | :---: |\n| **PBE Pretraining (Base)** | Pretrained representation on full PBE corpus | **0.2901** | **0.8303** |\n| **Scratch-Trained mBJ** | Trained from random initialization on mBJ | 0.4039 | 0.8277 |\n| **PBE Pretrained (Zero-Shot)** | Direct inference on mBJ without fine-tuning | 0.6925 | 0.6949 |\n| **Transfer Fine-Tuned (PBE → mBJ)** | Weight transfer + $1 \\times 10^{-5}$ fine-tuning | **0.3683** | **0.8529** |\n| **Ablation A (Small Head)** | Single-layer linear projection readout | 0.6216 | 0.5398 |\n| **Ablation B (No Attention / GCN)** | Isotropic message passing without edge attributes | 0.3011 | 0.8257 |\n| **Ablation C (No Gaussian)** | Direct 1D scalar bond distance inputs | 0.2945 | 0.8299 |\n\n### **Key Scientific Insights:**\n* **Deep Output Head is Dominant**: Replacing the 5-layer regression MLP with a simple projection readout (**Ablation A**) increases MAE by **114%** (0.2901 eV to 0.6216 eV), proving that structural mapping requires deep, highly non-linear feature transformation.\n* **Attention Resolves Overfitting**: Utilizing multi-head attention (**Base**) instead of isotropic aggregation (**Ablation B**) reduces the train-test generalization gap, serving as an implicit regularizer.\n* **Gaussian Smearing Smooths Convergence**: Though asymptotic accuracy remains similar, omitting Gaussian smearing (**Ablation C**) causes jagged optimization trajectories and slower convergence.\n\n---\n\n## 🤝 Citation & Publication\nIf you find this repository or model helpful in your research, please cite our peer-reviewed work:\n\n```bibtex\n@article{subasinghe2026crystal,\n  title={Crystal Transformer: Multi-Fidelity Transfer Learning for Photocatalytic Bandgap Prediction},\n  author={Subasinghe, Thushara and Kavindi, D.M.N. and Perera, E.T.B.},\n  journal={Computational Materials Science},\n  volume={XXX},\n  pages={XXXXXX},\n  year={2026},\n  publisher={Elsevier},\n  doi={https://doi.org/10.1016/j.commatsci.2026.XXXXXX}\n}\n```\n\n---\n\n## ⚖️ License & FAIR Sharing Compliance\nIn compliance with **Elsevier's *Computational Materials Science* FAIR data principles**, all codes are published under an open sharing license.\n* **Code License**: [MIT License](LICENSE)\n* **External Dataset Citations**: Crystalline structural inputs are referenced directly to their primary online hosting databases (Materials Project, AFLOW, and JARVIS-DFT). Anyone can download and reproduce the dataset using the official source registries referenced in the Sourcing section above.\n
+---
+
+## 📊 Quantitative Benchmark Results
+Below is the test-set performance comparison reproducing the metrics in **Table I** of the manuscript:
+
+| Configuration / Experiment | Architectural Details | MAE (eV) | $R^2$ |
+| :--- | :--- | :---: | :---: |
+| **PBE Pretraining (Base)** | Pretrained representation on full PBE corpus | **0.2901** | **0.8303** |
+| **Scratch-Trained mBJ** | Trained from random initialization on mBJ | 0.4039 | 0.8277 |
+| **PBE Pretrained (Zero-Shot)** | Direct inference on mBJ without fine-tuning | 0.6925 | 0.6949 |
+| **Transfer Fine-Tuned (PBE → mBJ)** | Weight transfer + $1 \\times 10^{-5}$ fine-tuning | **0.3683** | **0.8529** |
+| **Ablation A (Small Head)** | Single-layer linear projection readout | 0.6216 | 0.5398 |
+| **Ablation B (No Attention / GCN)** | Isotropic message passing without edge attributes | 0.3011 | 0.8257 |
+| **Ablation C (No Gaussian)** | Direct 1D scalar bond distance inputs | 0.2945 | 0.8299 |
+
+### **Key Scientific Insights:**
+* **Deep Output Head is Dominant**: Replacing the 5-layer regression MLP with a simple projection readout (**Ablation A**) increases MAE by **114%** (0.2901 eV to 0.6216 eV), proving that structural mapping requires deep, highly non-linear feature transformation.
+* **Attention Resolves Overfitting**: Utilizing multi-head attention (**Base**) instead of isotropic aggregation (**Ablation B**) reduces the train-test generalization gap, serving as an implicit regularizer.
+* **Gaussian Smearing Smooths Convergence**: Though asymptotic accuracy remains similar, omitting Gaussian smearing (**Ablation C**) causes jagged optimization trajectories and slower convergence.
+
+---
+
+## 🤝 Citation & Publication
+If you find this repository or model helpful in your research, please cite our peer-reviewed work:
+
+```bibtex
+@article{subasinghe2026crystal,
+  title={Crystal Transformer: Multi-Fidelity Transfer Learning for Photocatalytic Bandgap Prediction},
+  author={Subasinghe, Thushara and Kavindi, D.M.N. and Perera, E.T.B.},
+  journal={Computational Materials Science},
+  volume={XXX},
+  pages={XXXXXX},
+  year={2026},
+  publisher={Elsevier},
+  doi={https://doi.org/10.1016/j.commatsci.2026.XXXXXX}
+}
+```
+
+---
+
+## ⚖️ License & FAIR Sharing Compliance
+In compliance with **Elsevier's *Computational Materials Science* FAIR data principles**, all codes are published under an open sharing license.
+* **Code License**: [MIT License](LICENSE)
+* **External Dataset Citations**: Crystalline structural inputs are referenced directly to their primary online hosting databases (Materials Project, AFLOW, and JARVIS-DFT). Anyone can download and reproduce the dataset using the official source registries referenced in the Sourcing section above.
