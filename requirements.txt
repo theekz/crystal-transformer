@@ -1,0 +1,6 @@
+torch>=2.0.0
+torch-geometric>=2.3.0
+pymatgen>=2023.5.10
+numpy>=1.22.0
+matplotlib>=3.5.0
+tqdm>=4.65.0
