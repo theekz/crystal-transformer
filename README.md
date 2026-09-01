@@ -62,12 +62,12 @@ To reproduce the study, download the raw crystalline structural CIFs and experim
    * **Source Registry**: Downloaded from the **DCGAT** public dataset, which represents a joint aggregation of structural databases from the **Materials Project** and **AFLOW** repositories.
    * **Materials Project Portal**: [https://materialsproject.org](https://materialsproject.org)
    * **AFLOW Repository**: [http://aflow.org](http://aflow.org)
-   * **Setup**: Place the extracted raw PBE CIF structural files under `data/raw_pbe/` and supply their corresponding ID-to-bandgap metadata registry in the preprocessing script.
+   * **Setup**: Download `PBE_Data_part1.zip` and `PBE_Data_part2.zip` from the **GitHub Releases** page and unzip them directly into the `data/raw_pbe/` directory. Supply their corresponding ID-to-bandgap metadata registry in the preprocessing script.
 
 2. **meta-GGA mBJ high-fidelity dataset (19,805 structures)**:
    * **Source Registry**: Sourced from the **Joint Automated Repository for Various Integrated Simulations (JARVIS)** database.
    * **JARVIS-DFT (TB-mBJ calculations)**: [https://jarvis.nist.gov/](https://jarvis.nist.gov/) or [JARVIS-DFT Portal](https://jarvis.nist.gov/jarvisdft/).
-   * **Setup**: Place the raw high-fidelity TB-mBJ CIF structural files under `data/raw_mbj/` and link their target bandgaps in the preprocessing script.
+   * **Setup**: Download `MBJ.zip` from the **GitHub Releases** page and unzip it directly into the `data/raw_mbj/` directory. Link their target bandgaps in the preprocessing script.
 
 ---
 
